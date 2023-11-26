@@ -39,11 +39,11 @@ const TABLE_ROWS = [
   },
 ]
 
-const KarangTaruna = () => {
+const Lpm = () => {
   return (
     <main className='mx-auto max-w-screen-2xl px-1 py-2 lg:py-4'>
       <h1 className='py-4 text-xl text-center font-bold uppercase'>
-        Karang Taruna
+        Lembaga Pemberdayaan Masyarakat - LPM
       </h1>
 
       <Card className='h-[675px] w-full overflow-scroll'>
@@ -165,4 +165,4 @@ const KarangTaruna = () => {
   )
 }
 
-export default KarangTaruna
+export default Lpm
