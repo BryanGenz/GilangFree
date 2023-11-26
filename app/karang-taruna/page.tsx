@@ -1,96 +1,50 @@
 'use client'
 import React from 'react'
-import { Card, Typography } from '@material-tailwind/react'
 import Link from 'next/link'
-// import { Pagination } from '../components/layout'
+import { Card, Typography } from '@material-tailwind/react'
 
 const TABLE_HEAD = [
   'No',
   'Kegiatan',
-  'Lampiran',
+  'Tanggal Kegiatan',
+  'Lokasi',
   'Keterangan',
-  'Tanggal Dibuat',
+  'Dokumentasi',
   'Options',
 ]
 
 const TABLE_ROWS = [
   {
     id: 1,
-    kegiatan: 'Pengajian',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '23/04/18',
+    kegiatan: 'Penguatan Kelembagaan',
+    tanggalKegiatan: '21 XXXXX 2023',
+    lokasi: 'Ciwidey',
+    keterangan: 'xx Orang Peserta',
+    dokumentasi: 'pic.jpg',
   },
   {
     id: 2,
-    kegiatan: 'Pengajian 2',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '23/04/18',
+    kegiatan: 'Posyandu Remaja',
+    tanggalKegiatan: '22 XXXXX 2023',
+    lokasi: 'Posyandu RW 02',
+    keterangan: 'xx Orang Peserta',
+    dokumentasi: 'pic.jpg',
   },
   {
     id: 3,
-    kegiatan: 'Pengajian 3',
-    lampiran: 'Executive',
-    keterangan: 'Entah apa',
-    date: '19/09/17',
-  },
-  {
-    id: 4,
-    kegiatan: 'Pengajian 4',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '24/12/08',
-  },
-  {
-    id: 5,
-    kegiatan: 'Pengajian 5',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
-  },
-  {
-    id: 6,
-    kegiatan: 'Pengajian 6',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
-  },
-  {
-    id: 7,
-    kegiatan: 'Pengajian 7',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
-  },
-  {
-    id: 8,
-    kegiatan: 'Pengajian 8',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
-  },
-  {
-    id: 9,
-    kegiatan: 'Pengajian 9',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
-  },
-  {
-    id: 10,
-    kegiatan: 'Pengajian 10',
-    lampiran: '2 Lembar',
-    keterangan: 'Entah apa',
-    date: '04/10/21',
+    kegiatan: 'Penguatan Kelembagaan',
+    tanggalKegiatan: '21 XXXXX 2023',
+    lokasi: 'Ciwidey',
+    keterangan: 'xx Orang Peserta',
+    dokumentasi: 'pic.jpg',
   },
 ]
 
-const lpm = () => {
+const KarangTaruna = () => {
   return (
     <main className='mx-auto max-w-screen-2xl px-1 py-2 lg:py-4'>
       <h1 className='py-4 text-xl text-center font-bold uppercase'>
-        Daftar Laporan Lembaga Pemberdayaan Masyarakat
+        Karang Taruna
       </h1>
 
       <Card className='h-[675px] w-full overflow-scroll'>
@@ -115,10 +69,20 @@ const lpm = () => {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              ({ id, kegiatan, lampiran, keterangan, date }, index) => (
+              (
+                {
+                  id,
+                  kegiatan,
+                  tanggalKegiatan,
+                  lokasi,
+                  keterangan,
+                  dokumentasi,
+                },
+                index
+              ) => (
                 <tr key={id} className='even:bg-blue-gray-50/50'>
-                  <td className='p-4 w-8'>
-                    <Link href={`/lpm/${id}`}>
+                  <td className='p-4'>
+                    <Link href={`/pkk-pokjaI/${id}`}>
                       <Typography
                         variant='small'
                         color='blue-gray'
@@ -129,7 +93,7 @@ const lpm = () => {
                     </Link>
                   </td>
                   <td className='p-4'>
-                    <Link href={`/lpm/${id}`}>
+                    <Link href={`/pkk-pokjaI/${id}`}>
                       <Typography
                         variant='small'
                         color='blue-gray'
@@ -140,18 +104,29 @@ const lpm = () => {
                     </Link>
                   </td>
                   <td className='p-4'>
-                    <Link href={`/lpm/${id}`}>
+                    <Link href={`/pkk-pokjaI/${id}`}>
                       <Typography
                         variant='small'
                         color='blue-gray'
                         className='font-normal text-center'
                       >
-                        {lampiran}
+                        {tanggalKegiatan}
                       </Typography>
                     </Link>
                   </td>
                   <td className='p-4'>
-                    <Link href={`/lpm/${id}`}>
+                    <Link href={`/pkk-pokjaI/${id}`}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal text-center'
+                      >
+                        {lokasi}
+                      </Typography>
+                    </Link>
+                  </td>
+                  <td className='p-4'>
+                    <Link href={`/pkk-pokjaI/${id}`}>
                       <Typography
                         variant='small'
                         color='blue-gray'
@@ -162,16 +137,17 @@ const lpm = () => {
                     </Link>
                   </td>
                   <td className='p-4'>
-                    <Link href={`/lpm/${id}`}>
+                    <Link href={`/pkk-pokjaI/${id}`}>
                       <Typography
                         variant='small'
                         color='blue-gray'
                         className='font-normal text-center'
                       >
-                        {date}
+                        {dokumentasi}
                       </Typography>
                     </Link>
                   </td>
+
                   <td className='p-4 flex justify-center'>
                     <Typography
                       as='a'
@@ -198,12 +174,8 @@ const lpm = () => {
           </tbody>
         </table>
       </Card>
-
-      {/* <div className='mx-2 py-4 flex justify-center'>
-        <Pagination />
-      </div> */}
     </main>
   )
 }
 
-export default lpm
+export default KarangTaruna

@@ -1,63 +1,34 @@
 'use client'
-import React from 'react'
+import { ChangeEvent, FormEventHandler } from 'react'
 import Image from 'next/image'
 import { Input, Button } from '@material-tailwind/react'
-import { useFormik } from 'formik'
-import { filterFormikErrors } from '@/app/utility/formikHelpers'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import * as yup from 'yup'
-import { signIn } from 'next-auth/react'
 import logoKel from '@/public/Logo-kel.jpg'
-import { toast } from 'react-toastify'
-import { useRouter } from 'next/navigation'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
-const validationSchema = yup.object().shape({
-  email: yup.string().email('Invalid Email!').required('Email is Required!'),
-  password: yup
-    .string()
-    .min(8, 'Password Min Length is 8 Characters')
-    .required('Password is Required!'),
-})
-
-const Login = () => {
-  const router = useRouter()
-  const {
-    values,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-    errors,
-    touched,
-  } = useFormik({
-    initialValues: { email: '', password: '' },
-    validationSchema,
-    onSubmit: async (values, action) => {
-      const loginRes = await signIn('credentials', {
-        ...values,
-        redirect: false,
-        // callbackUrl: '/pkk-pokjaI',
-      })
-
-      if (loginRes?.error === 'CredentialsSignin') {
-        toast.error('Email/Password Mismatch')
-      }
-
-      if (!loginRes?.error) {
-        router.refresh()
-      }
-    },
-  })
-
-  const errorToRender = filterFormikErrors(errors, touched, values)
-
-  type valueKeys = keyof typeof values
-
-  const { email, password } = values
-
-  const error = (name: valueKeys) => {
-    return errors[name] && touched[name] ? true : false
+interface IPValues {
+  values: {
+    userName: string
+    email: string
+    password: string
   }
+  formErrors: string[]
+  handleBlur: (e: React.FocusEvent<any, Element>) => void
+  handleChange: (e: ChangeEvent<any>) => void
+  onSubmit: FormEventHandler<HTMLFormElement> | undefined
+  isSubmitting: boolean
+  err: (name: 'userName' | 'email' | 'password') => boolean
+}
+
+const SignUp = ({
+  isSubmitting,
+  handleBlur,
+  handleChange,
+  onSubmit,
+  values,
+  formErrors,
+  err,
+}: IPValues) => {
+  const { userName, email, password } = values
 
   return (
     <div className='h-8/12 w-80 bg-blue-200 rounded-md'>
@@ -85,40 +56,53 @@ const Login = () => {
 
       <form
         className='space-y-4 flex flex-col justify-center items-center my-8'
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         <div className='w-72'>
           <Input
-            name='email'
-            label='Email'
-            type='email'
+            label='Username'
+            name='userName'
+            type='text'
             crossOrigin={undefined}
             className='bg-gray-200'
-            value={email}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={error('email')}
+            value={userName}
+            error={err('userName')}
           />
         </div>
         <div className='w-72'>
           <Input
-            name='password'
+            label='E-mail'
+            name='email'
+            type='email'
+            crossOrigin={undefined}
+            className='bg-gray-200'
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={email}
+            error={err('email')}
+          />
+        </div>
+        <div className='w-72'>
+          <Input
             label='Password'
+            name='password'
             type='password'
             crossOrigin={undefined}
             className='bg-gray-200'
-            value={password}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={error('password')}
+            value={password}
+            error={err('password')}
           />
         </div>
-        <Button className='w-11/12' type='submit' disabled={isSubmitting}>
+        <Button disabled={isSubmitting} type='submit' className='w-11/12'>
           Button
         </Button>
 
         <div className=''>
-          {errorToRender.map((err) => {
+          {formErrors.map((err) => {
             return (
               <div
                 key={err}
@@ -135,4 +119,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignUp

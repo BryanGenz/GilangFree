@@ -1,14 +1,12 @@
 'use client'
 import React from 'react'
 import { Card, Typography } from '@material-tailwind/react'
-import Link from 'next/link'
-// import { Pagination } from '../components/layout'
 
 const TABLE_HEAD = [
   'No',
-  'Jumlah Pria',
-  'Jumlah Wanita',
-  'Status',
+  'Nama',
+  'Alamat',
+  'Pimpinan/Penanggung Jawab',
   'Keterangan',
   'Options',
 ]
@@ -16,32 +14,32 @@ const TABLE_HEAD = [
 const TABLE_ROWS = [
   {
     id: 1,
-    jumlahPria: 524,
-    jumlahWanita: 315,
-    status: 'Terdaftar',
-    keterangan: 'Oktober 2023',
+    nama: 'xxxx bin xxxxx',
+    alamat: 'jl. xxxxx No. xx',
+    pimpinan: 'xxxxxxxx',
+    keterangan: 'xxxx',
   },
   {
     id: 2,
-    jumlahPria: 8,
-    jumlahWanita: 5,
-    status: 'Dalam Proses Pengajuan',
-    keterangan: 'Oktober 2023',
+    nama: 'xxxx bin xxxxx',
+    alamat: 'jl. xxxxx No. xx',
+    pimpinan: 'xxxxxxxx',
+    keterangan: 'xxxx',
   },
   {
     id: 3,
-    jumlahPria: 224,
-    jumlahWanita: 115,
-    status: 'Terdaftar',
-    keterangan: 'November 2023',
+    nama: 'xxxx bin xxxxx',
+    alamat: 'jl. xxxxx No. xx',
+    pimpinan: 'xxxxxxxx',
+    keterangan: 'xxxx',
   },
 ]
 
-const dtks = () => {
+const PlaceWorship = () => {
   return (
     <main className='mx-auto max-w-screen-2xl px-1 py-2 lg:py-4'>
       <h1 className='py-4 text-xl text-center font-bold uppercase'>
-        Data Terpadu Kesejahteraan Sosial - DTKS
+        Tempat Ibadah
       </h1>
 
       <Card className='h-[675px] w-full overflow-scroll'>
@@ -66,9 +64,9 @@ const dtks = () => {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              ({ id, jumlahPria, jumlahWanita, status, keterangan }, index) => (
+              ({ id, nama, alamat, pimpinan, keterangan }, index) => (
                 <tr key={id} className='even:bg-blue-gray-50/50'>
-                  <td className='p-4 w-8'>
+                  <td className='p-4'>
                     <Typography
                       variant='small'
                       color='blue-gray'
@@ -83,7 +81,7 @@ const dtks = () => {
                       color='blue-gray'
                       className='font-normal text-center'
                     >
-                      {jumlahPria}
+                      {nama}
                     </Typography>
                   </td>
                   <td className='p-4'>
@@ -92,7 +90,7 @@ const dtks = () => {
                       color='blue-gray'
                       className='font-normal text-center'
                     >
-                      {jumlahWanita}
+                      {alamat}
                     </Typography>
                   </td>
                   <td className='p-4'>
@@ -101,7 +99,7 @@ const dtks = () => {
                       color='blue-gray'
                       className='font-normal text-center'
                     >
-                      {status}
+                      {pimpinan}
                     </Typography>
                   </td>
                   <td className='p-4'>
@@ -140,12 +138,8 @@ const dtks = () => {
           </tbody>
         </table>
       </Card>
-
-      {/* <div className='mx-2 py-4 flex justify-center'>
-        <Pagination />
-      </div> */}
     </main>
   )
 }
 
-export default dtks
+export default PlaceWorship
